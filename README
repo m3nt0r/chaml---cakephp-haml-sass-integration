@@ -1,0 +1,92 @@
+# CHAML v0.1 (draft)
+-------------------------
+
+	CakePHP HAML/SASS integration
+
+	# HAML
+	----------------------------
+	
+	Add "var view = 'Chaml';" and create .haml files in your view folders
+	
+		# HAML (optional) OPTIONS
+		----------------------------
+		
+		Configure::write('HAML.debug', false); // text view of whats going on
+		Configure::write('HAML.contentIndent', 4); // the indention level for content_for_layout
+		Configure::write('HAML.compressHTML', false); // strips all whitespace from HTML aka :ugly
+		Configure::write('HAML.showCacheTime', false); // if you like it will add a HTML comment with the cache filetime
+		Configure::write('HAML.noCache', false); // this is useful for hacking the parser (ie. to me)
+	
+		# HAML USAGE
+		----------------------------
+		
+	  Please refer to the HamlParser.class.php documentation example
+	  CakePHP Translation is supported. Use the dollar-sign to wrap payload in __();
+
+	# SASS
+	----------------------------
+
+	Add the sass.php as Asset.filter in your core.php
+
+ 		Configure::write('Asset.filter.css', 'sass.php');
+
+	Create .sass files in your webroot css folder and make sure to link to 
+	your css files with /ccss/ instead of /css/. Check the file for compression
+	options. 
+	
+	
+	# CACHES
+	----------------------------
+	
+	cached version are always created and used unless you update the .sass/.haml-file.
+
+	# TODO 
+	----------------------------
+	
+	+ update SASS caching to use same style of storing as HAML (using original path layout in /tmp/)
+	+ more parser hacking for better integration with cakephp. (import my previous unreleased phammable hacks)
+
+	# KNOWN ISSUES
+	----------------------------
+	
+	+ HAML: Not many, really. Just watch out for pesky whitespace and newlines within php flow structures (if, loops, ..)
+  + SASS parser was never finished, i assume (grabbed from svn after all), so there are some quirks.  
+  
+  
+# VENDORS
+----------------------------
+  
+  The HAML Parser is hacked to fit my -and this projects- needs. This means that 
+  you can't just update the vendor with some random phpHAML version. Rely on this
+  repo for updates on the parsers. I usually don't work that way, but the other
+  option would be to clone the better part of the vendor lib, which is nuts.
+  
+# LICENSE
+----------------------------
+
+	The MIT License
+	http://www.opensource.org/licenses/mit-license.php MIT (X11) License
+	
+	Thanks to Amadeusz Jasak for his work on phpHAML
+	Thanks to Adeel Khan for his original CakePHP implementation
+	
+	Markdown 
+	-------------------------
+	
+	http://michelf.com/projects/php-markdown/license/
+	
+
+# DISCLAIMER
+----------------------------
+
+  This software is provided by the copyright holders and contributors "as is" and any express 
+  or implied warranties, including, but not limited to, the implied warranties of merchantability 
+  and fitness for a particular purpose are disclaimed. In no event shall the copyright owner or 
+  contributors be liable for any direct, indirect, incidental, special, exemplary, or consequential 
+  damages (including, but not limited to, procurement of substitute goods or services; loss of use, 
+  data, or profits; or business interruption) however caused and on any theory of liability, whether 
+  in contract, strict liability, or tort (including negligence or otherwise) arising in any way out 
+  of the use of this software, even if advised of the possibility of such damage.
+
+
+
