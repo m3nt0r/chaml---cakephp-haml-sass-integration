@@ -27,6 +27,6 @@ $renderer = SassRenderer::COMPACT;
 $parser = new SassParser(CSS, TMP.'sass', $renderer);
 
 // OUTPUT
-echo "/* SASS - ".$parser->getRenderer()." */\n";
+echo "/* SASS - ".$parser->getRenderer()." */\n\n";
 echo $parser->fetch($sassFile, $renderer);
 ?>
