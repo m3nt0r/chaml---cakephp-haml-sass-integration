@@ -883,6 +883,27 @@ class HamlParser
 						else
 							$aAttributes['href'] = $sUrl;
 						$sToParse = str_replace($aMatches[0], '', $sToParse);
+					} elseif ($this->sTag == 'script' || $this->sTag == 'img') {
+	
+						$sUrl = str_replace(self::TOKEN_TARGET, '', $aMatches[0]);
+						$phpAssigned = explode('=', $sUrl);
+						
+						if (isset($phpAssigned[1])) {
+							if ($this->sTag == 'script') {
+								$aAttributes['src'] = '<?=$html->url("/js/'.$phpAssigned[1].'")?>';
+							} elseif($this->sTag == 'img') {
+								$aAttributes['src'] = '<?=$html->url("/img/'.$phpAssigned[1].'")?>';
+							}							
+						} else {
+							$aAttributes['src'] = $sUrl;
+						}
+							
+						if ($this->sTag == 'script') {
+							$aAttributes['type']	 = 'text/javascript';
+						} elseif($this->sTag == 'img') {
+							if (empty($aAttributes['alt'])) $aAttributes['alt'] = '';
+						}
+						$sToParse = str_replace($aMatches[0], '', $sToParse);
 					}
 				}
 	
@@ -929,11 +950,12 @@ class HamlParser
 					foreach ($aAttributes as $attrKey => $attrVal) {
 						$attrKey = str_replace("'", '', $attrKey);
 						
-						
-						if ($attrVal{0} == '$') {
-							$attrVal = '<?php echo '.$attrVal.' ?>';
-						} else {
-							$attrVal = str_replace("'", '', $attrVal);
+						if (strlen($attrVal)) {
+							if ($attrVal{0} == '$') {
+								$attrVal = '<?php echo '.$attrVal.' ?>';
+							} else {
+								$attrVal = str_replace("'", '', $attrVal);
+							}
 						}
 						
 						$sAttributes.= ' '.$attrKey.'="'.$attrVal.'"';
