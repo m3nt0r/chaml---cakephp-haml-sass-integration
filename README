@@ -23,6 +23,28 @@
 	  Please refer to the HamlParser.class.php documentation example
 	  CakePHP Translation is supported. Use the dollar-sign to wrap payload in __();
 
+    # EXAMPLE LAYOUT
+    ----------------------------
+    
+    !!! 
+    %head
+    	%title My Cool App
+    	%link{ :rel => 'stylesheet', :type => 'text/css', :href => $html->url('/ccss/layout.css') }
+    %body
+    	#doc
+    		#hd
+    			%h1 MyCoolApp
+    		#bd
+    			- $session->flash()
+    			= $content_for_layout
+    		#ft
+    			mycoolapp.php (c) 2009
+
+    # NOTE
+    ----------------------------
+    Of course you can use $html->css() if you want. I am just showing how it works with attribs
+    You are not forced to use soft-tabs. You can use full tabs if you like it! (was important to me)
+
 	# SASS
 	----------------------------
 
@@ -33,8 +55,29 @@
 	Create .sass files in your webroot css folder and make sure to link to 
 	your css files with /ccss/ instead of /css/. Check the file for compression
 	options. 
+	  
+	  # EXAMPLE SASS
+	  ----------------------------
+	  File: webroot/css/layout.sass
+	  
+	    body
+        :font
+          :family Helvetica, Arial, sans-serif
+        
+    Produces: localhost.../ccss/layout.css
 	
-	
+      body { font-family: Helvetica, Arial, sans-serif; }
+  
+    # NOTE
+    ----------------------------
+    You NEED to use spaces over tabs.. working on it!
+    By the way: You can also just do this
+    
+      body
+        :font-family Helvetica, Arial, sans-serif
+
+  
+  
 	# CACHES
 	----------------------------
 	
