@@ -98,6 +98,10 @@ class ChamlView extends View {
 		$this->ext = '.haml';
 		
 		$this->Haml = new CakeHamlParser($this);
+		foreach ($this as $prop => $value) {
+			$this->Haml->{$prop} = $value;
+		}
+		
 		$this->Haml->assign_by_ref('__haml', $this->Haml);
 	}
 	
@@ -154,7 +158,11 @@ class ChamlView extends View {
 			if ($content_for_layout !== false) 
 			{
 				unset($this->Haml);
-				$this->Haml = new CakeHamlParser($this);				
+				$this->Haml = new CakeHamlParser($this);
+				foreach ($this as $prop => $value) {
+					$this->Haml->{$prop} = $value;
+				}				
+					
 				$this->Haml->assign_by_ref('__haml', $this->Haml);
 				if ($this->layout && $this->autoLayout) {
 					$layout = $this->renderLayout($content_for_layout);
