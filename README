@@ -44,6 +44,9 @@
     ----------------------------
     Of course you can use $html->css() if you want. I am just showing how it works with attribs
     You are not forced to use soft-tabs. You can use full tabs if you like it! (was important to me)
+    About markup: 
+     - single dash: dont echo result
+     = equal sign: echo result
 
 	# SASS
 	----------------------------
