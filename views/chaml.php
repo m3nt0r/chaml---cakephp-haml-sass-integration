@@ -15,7 +15,7 @@
  * 
  * Based on the work by Adeel Khan (chess64) - cheers!
  */
-App::import('Vendor', 'HamlParser', array('file'=>'phphaml'.DS.'haml'.DS.'HamlParser.class.php'));
+App::import('Vendor', 'HamlParser', array('file'=>'haml'.DS.'HamlParser.class.php'));
 App::import('Vendor', 'Markdown', array('file'=>'markdown'.DS.'markdown.php'));
 
 // Default Config
