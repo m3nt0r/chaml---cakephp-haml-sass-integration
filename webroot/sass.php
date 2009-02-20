@@ -22,7 +22,7 @@ $sassFile = r('.css', '.sass', $filepath);
 if (!file_exists($sassFile)) die('/*SASS file not found.*/');
 
 // RENDER AND CACHE
-App::import('Vendor', 'SassParser', array('file'=>'phphaml'.DS.'sass'.DS.'SassParser.class.php'));
+App::import('Vendor', 'SassParser', array('file'=>'sass'.DS.'SassParser.class.php'));
 $renderer = SassRenderer::COMPACT;
 $parser = new SassParser(CSS, TMP.'sass', $renderer);
 
